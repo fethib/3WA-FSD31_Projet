@@ -1,0 +1,29 @@
+@layout('layout')
+
+@section('body')
+  <div class="login-card">
+    <h1>Connexion</h1>
+
+    <form action="" method="post">
+      @!component('components/input', {
+        label: 'Adresse e-mail',
+        name: 'email',
+        type: 'email'
+      })
+
+      @!component('components/input', {
+        label: 'Mot de passe',
+        name: 'password',
+        type: 'password'
+      })
+
+      <div class="foot">
+        {{--  Bouton Submit  --}}
+        @!component('components/button', {
+          label: 'Se connecter',
+          type: 'submit'
+        })
+      </div>
+    </form>
+  </div>
+@endsection

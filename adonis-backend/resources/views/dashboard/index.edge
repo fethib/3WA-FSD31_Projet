@@ -1,0 +1,55 @@
+@layout('layout')
+
+@section('body')
+  <h1> Administration de l'API Kebab Quiz </h1>
+
+  <div class="row entities">
+    <div class="col-md-12">
+      <div class="entity-header">
+        <h2>Thèmes</h2>
+        <a class="btn btn-primary" href="{{ route('theme.new') }}"> Créer un thème </a>
+      </div>
+      <div class="cards-list">
+        @each(theme in themes)
+          <div class="theme-card">
+
+            <span class="title">
+              {{theme.emoji}} {{theme.name}}
+            </span>
+
+            <div class="actions">
+              <a class="btn btn-primary" href="{{ route('theme.show', {id: theme.id}) }}">Modifier</a>
+              <form action="{{ route('theme.show', {id: theme.id}) }}?_method=DELETE" method="POST"><button class="btn btn-danger" type="submit">Supprimer</button></form>
+            </div>
+          </div>
+        @endeach
+      </div>
+    </div>
+
+    <div class="col-md-12">
+      <div class="entity-header">
+        <h2>Questions</h2>
+        <a class="btn btn-primary" href="{{ route('question.new') }}"> Créer une question </a>
+      </div>
+      <div class="cards-list">
+        @each(question in questions)
+          <div class="question-card">
+
+            <span class="title">
+              {{question.title}}
+            </span>
+            <div class="answers">
+              <div class="correct">{{question.correctAnswer}}</div>
+              <div>{{question.invalidAnswer1}}</div>
+              <div>{{question.invalidAnswer2}}</div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-primary" href="{{ route('question.show', {id: question.id}) }}">Modifier</a>
+              <form action="{{ route('question.show', {id: question.id}) }}?_method=DELETE" method="POST"><button class="btn btn-danger" type="submit">Supprimer</button></form>
+            </div>
+          </div>
+        @endeach
+      </div>
+  </div>
+@endsection

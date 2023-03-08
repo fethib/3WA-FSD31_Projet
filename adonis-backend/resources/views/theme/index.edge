@@ -1,0 +1,25 @@
+@layout('layout')
+
+@section('body')
+  <div class="header">
+    <h1>Thèmes</h1>
+    <a href="{{ route('dashboard.index') }}"> Retour au dashboard </a>
+    <a class="btn btn-primary" href="{{ route('theme.new') }}"> Créer un thème </a>
+  </div>
+
+  <div class="themes-list">
+    @each(theme in themes)
+      <div class="theme-card">
+
+        <span class="title">
+          {{theme.emoji}} {{theme.name}}
+        </span>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="{{ route('theme.show', {id: theme.id}) }}">Modifier</a>
+          <form action="{{ route('theme.show', {id: theme.id}) }}?_method=DELETE" method="POST"><button class="btn btn-danger" type="submit">Supprimer</button></form>
+        </div>
+      </div>
+    @endeach
+  </div>
+@endsection

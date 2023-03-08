@@ -1,0 +1,30 @@
+@layout('layout')
+
+@section('body')
+  <div class="header">
+    <h1>Questions</h1>
+    <a href="{{ route('dashboard.index') }}"> Retour au dashboard </a>
+    <a class="btn btn-primary" href="{{ route('question.new') }}"> Créer une question </a>
+  </div>
+
+  <div class="questions-list">
+    @each(question in questions)
+      <div class="question-card">
+
+        <span class="title">
+          {{question.title}}
+        </span>
+        <div class="answers">
+          <div class="correct">{{question.correctAnswer}}</div>
+          <div>{{question.invalidAnswer1}}</div>
+          <div>{{question.invalidAnswer2}}</div>
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="{{ route('question.show', {id: question.id}) }}">Modifier</a>
+          <form action="{{ route('question.show', {id: question.id}) }}?_method=DELETE" method="POST"><button class="btn btn-danger" type="submit">Supprimer</button></form>
+        </div>
+      </div>
+    @endeach
+  </div>
+@endsection

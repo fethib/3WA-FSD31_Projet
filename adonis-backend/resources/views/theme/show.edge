@@ -1,0 +1,30 @@
+@layout('layout')
+
+@section('body')
+  @if(status == 'new')
+    <h1>Créer un thème</h1>
+  @else
+    <h1>Modifier un thème</h1>
+  @endif
+  <a href="{{ route('dashboard.index') }}">Retour à la liste</a>
+
+  <form action="" method="post">
+    @!component('components/input', {
+      label: 'Nom du thème',
+      name: 'name',
+      value: theme.name
+    })
+
+    @!component('components/input', {
+      label: 'Emoji',
+      name: 'emoji',
+      value: theme.emoji
+    })
+
+    {{--  Bouton Submit  --}}
+    @!component('components/button', {
+      label: 'Sauvegarder',
+      type: 'submit'
+    })
+  </form>
+@endsection

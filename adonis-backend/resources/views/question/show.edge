@@ -1,0 +1,49 @@
+@layout('layout')
+
+@section('body')
+  @if(status == 'new')
+    <h1>Créer une question</h1>
+  @else
+    <h1>Modifier une question</h1>
+  @endif
+  <a href="{{ route('dashboard.index') }}">Retour à la liste</a>
+
+  <form action="" method="post">
+    @!component('components/input', {
+      label: 'Intitulé de la question',
+      name: 'title',
+      value: question.title
+    })
+
+    @!component('components/input', {
+      label: 'Bonne réponse',
+      name: 'correctAnswer',
+      value: question.correctAnswer
+    })
+
+    @!component('components/input', {
+      label: 'Mauvaise réponse 1',
+      name: 'invalidAnswer1',
+      value: question.invalidAnswer1
+    })
+
+    @!component('components/input', {
+      label: 'Mauvaise réponse 2',
+      name: 'invalidAnswer2',
+      value: question.invalidAnswer2
+    })
+
+    @!component('components/input', {
+      label: 'Thème de la question',
+      name: 'themeId',
+      value: question.themeId,
+      options: themes.reduce((acc, theme) => ({ ...acc, [theme.id]: {name: theme.name, emoji: theme.emoji} }), {})
+    })
+
+    {{--  Bouton Submit  --}}
+    @!component('components/button', {
+      label: 'Sauvegarder',
+      type: 'submit'
+    })
+  </form>
+@endsection
